@@ -40,12 +40,12 @@ jobs:
     - name: Yapify styling   
       run: |
          pip install yapf
-         yapf test.py
+         python -m yapf test.py > test.py
    
 #   - name: Test with pytest
 #      run: |
 #        pip install pytest
-#        python -m yapf test.py > test.py
+#        pytest
         
   deploy:     
      runs-on: ubuntu-latest
