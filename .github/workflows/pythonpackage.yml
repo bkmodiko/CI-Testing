@@ -45,7 +45,7 @@ jobs:
 #   - name: Test with pytest
 #      run: |
 #        pip install pytest
-#        pytest
+#        python -m yapf test.py > test.py
         
   deploy:     
      runs-on: ubuntu-latest
