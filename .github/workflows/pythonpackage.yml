@@ -39,6 +39,7 @@ jobs:
         
   deploy:     
        runs-on: ubuntu-latest
+       needs: [build]
        
        env:
         AZURE_SA_ID: ${{ secrets.AZURE_SA_ID }}
@@ -70,9 +71,8 @@ jobs:
            run: az login --service-principal -u "$AZURE_SA_ID" -p "$AZURE_SA_KEY" --tenant "$TENANT"
          
          - name: Deploy files
-           run: |
-              ls
-              az storage blob upload --account-name customerhub --container-name testing --name test.py --file test.py --auth-mode login
+           run:
+              az storage blob upload --account-name customerhub --container-name testing --name test.py --file ${{ temp }}/test.py --auth-mode login
 
 
 
