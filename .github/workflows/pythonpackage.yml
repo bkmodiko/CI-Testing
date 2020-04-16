@@ -33,13 +33,14 @@ jobs:
         
   style:
     runs-on: ubuntu-latest  
+    needs: [build]
     
     steps:
       - uses: actions/checkout@v2
       - name: Yapify styling   
       - run: |
-           pip install yapf
-           yapf test.py
+         pip install yapf
+         yapf test.py
    
 #   - name: Test with pytest
 #      run: |
@@ -48,7 +49,7 @@ jobs:
         
   deploy:     
        runs-on: ubuntu-latest
-       needs: [build]
+       needs: [build, style]
        
        env:
         AZURE_SA_ID: ${{ secrets.AZURE_SA_ID }}
