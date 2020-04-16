@@ -71,7 +71,7 @@ jobs:
          
          - name: Deploy files
            run:
-              az storage blob upload --account-name customerhub --container-name testing --name test.py --file ${{ temp }}/test.py --auth-mode login
+              az storage blob upload --account-name customerhub --container-name testing --name test.py --file ${{ runner.temp }}/test.py --auth-mode login
 
 
 
