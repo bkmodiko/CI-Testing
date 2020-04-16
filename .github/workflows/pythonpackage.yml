@@ -3,9 +3,7 @@
 
 name: Python package
 
-on: 
-  pull_request:
-    branches: [ master ]
+on: [pull_request]
 
 jobs:
   build:
@@ -13,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [2.7, 3.5, 3.8]
+        python-version: [2.7, 3.5]
 
     steps:
     - uses: actions/checkout@v2
@@ -41,8 +39,9 @@ jobs:
        runs-on: ubuntu-latest
        
        env:
-        SP_USERNAME: ${{ secrets.sp_username }}
-        SP_PASSWORD: ${{ secrets.sp_password }}
+        SA_ID: ${{ secrets.serviceAcc_id }}
+        SA_KEY: ${{ secrets.serviceAcc_key }}
+        TENANT: "Naspers.onmicrosoft.com"
        
        steps:
          - name: Install Azure CLI
@@ -66,7 +65,7 @@ jobs:
                sudo apt-get install azure-cli
                
          - name: Authenticate to Azure CLI
-           run: az login -u SP_USERNAME -p SP_PASSWORD
+           run: az login --service-principal -u $(SA_ID) -p $(SA_KEY) --tenant $(TENANT)
 
 
 
