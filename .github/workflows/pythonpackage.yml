@@ -36,11 +36,11 @@ jobs:
     needs: [build]
     
     steps:
-      - uses: actions/checkout@v2
-      - name: Yapify styling   
-      - run: |
-         pip install yapf
-         yapf test.py
+    - uses: actions/checkout@v2
+    - name: Yapify styling   
+    - run: |
+       pip install yapf
+       yapf test.py
    
 #   - name: Test with pytest
 #      run: |
