@@ -46,6 +46,7 @@ jobs:
         TENANT: "Naspers.onmicrosoft.com"
        
        steps:
+         - uses: actions/checkout@v2
          - name: Install Azure CLI
            run: |
              # Get packages needed for the install process
