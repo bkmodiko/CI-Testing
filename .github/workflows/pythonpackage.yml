@@ -42,6 +42,10 @@ jobs:
   deploy:     
        runs-on: ubuntu-latest
        
+       env:
+        SP_USERNAME: ${{ secrets.sp_username }}
+        SP_PASSWORD: ${{ secrets.sp_password }}
+       
        steps:
          - name: Install Azure CLI
            run: |
@@ -64,6 +68,7 @@ jobs:
                sudo apt-get install azure-cli
                
          - name: Authenticate to Azure CLI
-           run: |
+           run: az login -u SP_USERNAME -p SP_PASSWORD
+
 
 
